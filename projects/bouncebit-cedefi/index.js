@@ -62,6 +62,12 @@ async function cedefiTvl(api) {
     api.add(targetToken, token.tvl)
   })
 
+  // add bsc promo btcb
+  if (chain === 'bsc') {
+    const BTCBStaked = await api.call({  abi: PROMO_BTCB_STAKE_ABI, target: '0x471461A60EC3855DC58E00De81E3510b8945D2f9'})  
+    api.add(ADDRESSES.bsc.BTCB, BTCBStaked)
+  }
+
   return api.getBalances()
 }
 
